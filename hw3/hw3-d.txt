@@ -1,0 +1,4 @@
+I think I have a great experience in DBMS. Compared to use sqlite in terminal, it has a great appearance
+instead of all black. Also, the way it imports data is fast and unique, we can easily insert external data into
+table. Moreover, the output format is more readable, we can clearly see the table. Finally, the way it reports
+error is easy to understand and easy to debug. Thus, I really really really like DBMS cloud service!!!

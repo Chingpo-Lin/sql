@@ -1,0 +1,8 @@
+-- 74 rows 0.526 sec
+SELECT y.`-car_code` as country_code, y.name as country_name, s1 as seas
+FROM geo.world x, x.mondial.country y
+LET s1 = (SELECT s2.name
+FROM x.mondial.sea s2, split(s2.`-country`, " ") AS spy
+WHERE y.`-car_code` = spy)
+WHERE ARRAY_COUNT(s1) > 1
+ORDER BY ARRAY_COUNT(s1) DESC;

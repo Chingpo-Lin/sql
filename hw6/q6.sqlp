@@ -1,0 +1,7 @@
+-- 238 rows 2.595 sec
+SELECT y.`-car_code` as country_code, y.name as country_name, mountain as mountains
+FROM geo.world x, x.mondial.country y
+LET mountain = (SELECT m.name as mountain, m.height
+FROM x.mondial.mountain m, split(m.`-country`, " ") AS spy
+WHERE y.`-car_code` = spy)
+ORDER BY ARRAY_COUNT(mountain) DESC;

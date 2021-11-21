@@ -1,0 +1,17 @@
+
+-- 7 rows 0.429 sec
+  USE geoindex;
+  WITH X AS
+  (SELECT DISTINCT c1.y1 as fc, c2.y2 as sc, c1.m1 as m, c1.s1 as s
+   FROM (SELECT y.name as y1, s.name as s1, m.name as m1
+         FROM country y, mountain m, sea s, split(s.`-country`, " ") AS sps, split(m.`-country`, " ") AS spm
+         WHERE y.`-car_code` = sps AND y.`-car_code` = spm) AS c1,
+        (SELECT y.name as y2, s.name as s2, m.name as m2
+         FROM country y, mountain m, sea s, split(s.`-country`, " ") AS sps, split(m.`-country`, " ") AS spm
+         WHERE y.`-car_code` = sps AND y.`-car_code` = spm) AS c2
+   WHERE c1.s1 = c2.s2 AND c1.m1 = c2.m2 AND c1.y1 < c2.y2)
+
+  SELECT x1.fc as first_country, x1.sc as second_country,
+         (SELECT DISTINCT X.m as mountain FROM X WHERE X.fc=x1.fc AND X.sc=x1.sc) as mountains, (SELECT DISTINCT X.s as sea FROM X WHERE X.fc=x1.fc AND X.sc=x1.sc) as seas
+  FROM X as x1
+  GROUP BY x1.fc, x1.sc;

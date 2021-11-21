@@ -1,0 +1,16 @@
+a. 
+first step ->    (D,B) and (C,E,A,D)
+                      BCNF               l
+second step             (C,E,A) and (C,E,D) 
+		BCNF          BCNF 
+b.
+first step ->    (B,C,A,E) and (B,C,D)
+	             l            BCNF
+second stop  (B,C,A) and (B,C,E)
+                       BCNF          BCNF
+c.
+A->A, B->B, C->C, D->D
+d.
+A->B, B->C, C->D, D->A
+e.
+B->C, C->B, A->BD, D->CA

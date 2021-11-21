@@ -1,0 +1,9 @@
+
+-- 30 rows 0.114 sec
+
+SELECT u.name as city
+FROM geo.world x, x.mondial.country y, y.province z, 
+(CASE  WHEN is_array(z.city) THEN z.city
+ELSE [z.city] END) AS u
+WHERE  y.name='Peru'
+ORDER BY city;

@@ -1,0 +1,10 @@
+-- 238 rows 0.126 sec
+
+SELECT y.name as country, y.population, array_count(r) as num_religions
+FROM geo.world x, x.mondial.country y
+LET r = (CASE WHEN y.religions IS MISSING THEN []
+WHEN is_array(y.religions)
+THEN y.religions
+ELSE [y.religions]
+END) 
+Order by country;

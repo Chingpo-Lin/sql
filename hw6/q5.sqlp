@@ -1,0 +1,5 @@
+-- 272 rows 1.053 sec
+SELECT m.name as mountain, m.height, y.`-car_code` as country_code, y.name as country_name
+FROM geo.world x, x.mondial.country y, x.mondial.mountain m, split(m.`-country`, " ") AS spy
+WHERE y.`-car_code` = spy
+ORDER BY float(m.height) DESC;

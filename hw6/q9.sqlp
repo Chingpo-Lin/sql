@@ -1,0 +1,13 @@
+-- 7 rows 193.407 sec
+SELECT DISTINCT c1.y1 as first_country, c2.y2 as second_country
+FROM (SELECT y.name as y1, s.name as s1, m.name as m1
+FROM geo.world x, x.mondial.country y, x.mondial.mountain m, x.mondial.sea s,
+split(s.`-country`, " ") AS sps, split(m.`-country`, " ") AS spm
+WHERE y.`-car_code` = sps AND y.`-car_code` = spm) AS c1,
+(SELECT y.name as y2, s.name as s2, m.name as m2
+FROM geo.world x, x.mondial.country y, x.mondial.mountain m, x.mondial.sea s,
+split(s.`-country`, " ") AS sps, split(m.`-country`, " ") AS spm
+WHERE y.`-car_code` = sps AND y.`-car_code` = spm) AS c2
+WHERE c1.s1 = c2.s2 AND
+c1.m1 = c2.m2 AND
+c1.y1 < c2.y2;
